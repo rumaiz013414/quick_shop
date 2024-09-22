@@ -46,11 +46,12 @@
 
             <!-- Page Content -->
             <div class="max-w-7xl mx-auto">
-                {{ $slot }}
+                @yield('content') <!-- Change this line to yield content -->
             </div>
         </main>
     </div>
 
     <!-- Include any additional scripts here -->
+    @yield('scripts') <!-- Use this for page-specific scripts -->
 </body>
 </html>

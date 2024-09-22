@@ -1,15 +1,18 @@
 @extends('layouts.app')
 
+@section('header')
+    <h1 class="text-2xl font-bold">Products</h1>
+@endsection
+
 @section('content')
     <div class="p-6">
-        <h1 class="text-2xl font-bold mb-4">Products</h1>
         <a href="{{ route('products.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded">Add Product</a>
 
         @if(session('success'))
             <div class="mt-4 text-green-500">{{ session('success') }}</div>
         @endif
 
-        <table class="min-w-full mt-4">
+        <table class="min-w-full mt-4 bg-white">
             <thead>
                 <tr>
                     <th class="border px-4 py-2">ID</th>

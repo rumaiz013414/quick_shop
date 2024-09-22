@@ -9,7 +9,13 @@ class ProductController extends Controller
 {
     public function index()
     {
-        return Product::all();
+        $products = Product::all();
+        return view('products.index', compact('products'));
+    }
+
+    public function create()
+    {
+        return view('products.create');
     }
 
     public function store(Request $request)
@@ -21,12 +27,18 @@ class ProductController extends Controller
             'image_url' => 'nullable|string',
         ]);
 
-        return Product::create($request->all());
+        Product::create($request->all());
+        return redirect()->route('products.index')->with('success', 'Product created successfully.');
     }
 
     public function show(Product $product)
     {
-        return $product;
+        return view('products.show', compact('product'));
+    }
+
+    public function edit(Product $product)
+    {
+        return view('products.edit', compact('product'));
     }
 
     public function update(Request $request, Product $product)
@@ -39,12 +51,12 @@ class ProductController extends Controller
         ]);
 
         $product->update($request->all());
-        return $product;
+        return redirect()->route('products.index')->with('success', 'Product updated successfully.');
     }
 
     public function destroy(Product $product)
     {
         $product->delete();
-        return response()->noContent();
+        return redirect()->route('products.index')->with('success', 'Product deleted successfully.');
     }
 }
