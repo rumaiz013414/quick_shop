@@ -26,7 +26,10 @@
                     <li>
                         <a href="{{ route('products.index') }}" class="block px-4 py-2 hover:bg-gray-700">Manage Products</a>
                     </li>
-                    <!-- Add other navigation links here -->
+                    <li>
+                        <a href="{{ route('tshirts.index') }}" class="block px-4 py-2 hover:bg-gray-700">Manage T-Shirts</a>
+                    </li>
+                    
                 </ul>
             </nav>
         </aside>
