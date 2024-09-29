@@ -7,20 +7,25 @@ use Illuminate\Http\Request;
 
 class TshirtController extends Controller
 {
-    // Show all T-shirts for the web view
+    // Get all t-shirts
+    public function index()
+    {
+        $tshirts = Tshirt::all();
+        return response()->json($tshirts);
+    }
     public function webindex()
     {
         $tshirts = Tshirt::all();
-        return view('tshirts.index', compact('tshirts'));
+        return view('tshirts.index', compact('tshirts'));  // Return the view instead of JSON
     }
 
-    // Show the form for creating a new T-shirt
-    public function create()
+    // Get a single t-shirt by ID
+    public function show(Tshirt $tshirt)
     {
-        return view('tshirts.create'); // Return the view for creating a new T-shirt
+        return response()->json($tshirt);
     }
 
-    // Store a new T-shirt
+    // Create a new t-shirt
     public function store(Request $request)
     {
         $request->validate([
@@ -32,44 +37,36 @@ class TshirtController extends Controller
         ]);
 
         $tshirt = Tshirt::create($request->all());
-        return redirect()->route('tshirts.index')->with('success', 'T-shirt created successfully.');
+        return redirect()->route('tshirts.index')->with('success', 'T-shirt added successfully.');
     }
 
-    // Show a single T-shirt by ID for web view
-    public function show(Tshirt $tshirt)
-    {
-        return view('tshirts.show', compact('tshirt')); // Return the show view for a single T-shirt
-    }
-
-    // Show the form for editing a T-shirt
-    public function edit(Tshirt $tshirt)
-    {
-        return view('tshirts.edit', compact('tshirt')); // Return the edit view
-    }
-
-    // Update a T-shirt
+    // Update a t-shirt
     public function update(Request $request, Tshirt $tshirt)
-{
-    // Validate the incoming request data
-    $request->validate([
-        'name' => 'sometimes|required|string|max:255',
-        'color' => 'sometimes|required|string|max:255',
-        'size' => 'sometimes|required|string|max:255',
-        'price' => 'sometimes|required|numeric|min:0',
-        'stock' => 'sometimes|required|integer|min:0',
-    ]);
+    {
+        $request->validate([
+            'name' => 'sometimes|required|string|max:255',
+            'color' => 'sometimes|required|string|max:255',
+            'size' => 'sometimes|required|string|max:255',
+            'price' => 'sometimes|required|numeric|min:0',
+            'stock' => 'sometimes|required|integer|min:0',
+        ]);
 
-    // Update the T-shirt with the validated data
-    $tshirt->update($request->all());
+        $tshirt->update($request->all());
+        return redirect()->route('tshirts.index')->with('success', 'T-shirt updated successfully.');
+    }
 
-    // Redirect back to the index route with a success message
-    return redirect()->route('tshirts.index')->with('success', 'T-shirt updated successfully.');
-}
+    public function create()
+    {
+        return view('tshirts.create');
+    }
+    public function edit(Tshirt $tshirt) {
+        return view('tshirts.edit', compact('tshirt')); 
+    }
 
-    // Delete a T-shirt
     public function destroy(Tshirt $tshirt)
     {
         $tshirt->delete();
         return redirect()->route('tshirts.index')->with('success', 'T-shirt deleted successfully.');
     }
 }
+
