@@ -19,7 +19,7 @@
 <body class="font-sans antialiased bg-gray-100">
     <div class="min-h-screen flex">
         <!-- Sidebar -->
-        <aside class="w-64 bg-gray-800 text-white h-screen">
+        <aside class="w-64 bg-gray-800 text-white h-screen fixed">
             <div class="p-4">
                 <h2 class="text-lg font-bold">Admin Panel</h2>
             </div>
@@ -51,7 +51,7 @@
                     <!-- Manage T-Shirts -->
                     <li>
                         <a href="{{ route('tshirts.index') }}" class="block px-4 py-2 hover:bg-gray-700 rounded {{ request()->routeIs('tshirts.*') ? 'bg-gray-700' : '' }}">
-                            Manage T-Shirts
+                            Manage Products
                         </a>
                     </li>
 
@@ -85,7 +85,7 @@
         </aside>
 
         <!-- Main Content -->
-        <div class="flex-1 flex flex-col overflow-hidden">
+        <div class="flex-1 flex flex-col overflow-hidden ml-64">
             <!-- Header -->
             @if (isset($header))
                 <header class="bg-white shadow">
