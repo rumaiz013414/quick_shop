@@ -27,6 +27,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role', 
     ];
 
     /**
@@ -40,6 +41,8 @@ class User extends Authenticatable
         'two_factor_recovery_codes',
         'two_factor_secret',
     ];
+    public const ROLE_ADMIN = 1;
+    public const ROLE_CUSTOMER = 2;
 
     /**
      * The attributes that should be cast.
@@ -50,6 +53,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function isAdmin()
+    {
+        return $this->role === self::ROLE_ADMIN;
+    }
     /**
      * The accessors to append to the model's array form.
      *

@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TshirtController;
 use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\Auth\RegisteredUserController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -15,12 +17,10 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
+    
     // Admin dashboard route (fetching analytics)
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
     
-    // Product routes
-    Route::resource('products', ProductController::class);
-
     // T-shirt routes
     Route::get('/tshirts', [TshirtController::class, 'webindex'])->name('tshirts.index'); // Web index route
     Route::get('/tshirts/create', [TshirtController::class, 'create'])->name('tshirts.create');
