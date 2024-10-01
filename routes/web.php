@@ -5,6 +5,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TshirtController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\ProfileController;
 
 
 Route::get('/', function () {
@@ -20,6 +21,11 @@ Route::middleware([
     
     // Admin dashboard route (fetching analytics)
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+
+    Route::get('/users', [ProfileController::class, 'index'])->name('users.index');
+    Route::get('/users/{id}/edit', [ProfileController::class, 'edit'])->name('users.edit');
+    Route::post('/users/{id}/edit', [ProfileController::class, 'adminUpdate'])->name('users.update');
+    Route::delete('/users/{id}', [ProfileController::class, 'destroy'])->name('users.destroy');
     
     // T-shirt routes
     Route::get('/tshirts', [TshirtController::class, 'webindex'])->name('tshirts.index'); // Web index route

@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container mx-auto p-6">
-    <h1 class="text-3xl font-bold mb-4 text-center">T-Shirts</h1>
+    <h1 class="text-3xl font-bold mb-4 text-center">Products</h1>
     <a href="{{ route('tshirts.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4 inline-block">Add New T-Shirt</a>
 
     @if(session('success'))

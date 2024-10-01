@@ -54,8 +54,13 @@
                             Manage Products
                         </a>
                     </li>
-                        
 
+                    <li>
+                        <a href="{{ route('users.index') }}" class="block px-4 py-2 hover:bg-gray-700 rounded {{ request()->routeIs('users.*') ? 'bg-gray-700' : '' }}">
+                            Manage Users
+                        </a>
+                    </li>
+                        
                     <!-- Profile and Settings -->
                     <li>
                         <a href="{{ route('profile.show') }}" class="block px-4 py-2 hover:bg-gray-700 rounded">
