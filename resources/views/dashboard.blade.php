@@ -9,12 +9,12 @@
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
-                    <h3 class="font-semibold text-lg mb-4">T-Shirt Analytics Overview</h3>
+                    <h3 class="font-semibold text-lg mb-4">Analytics Overview</h3>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         <!-- Total T-Shirts Card -->
                         <div class="bg-blue-100 p-4 rounded-lg shadow-md">
-                            <h4 class="font-bold text-xl">Total T-Shirts</h4>
+                            <h4 class="font-bold text-xl">Total Design Types</h4>
                             <p class="text-2xl mt-2">{{ $totalTshirts ?? 'No Data' }}</p>
                         </div>
 
