@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container mx-auto p-6">
-    <h1 class="text-3xl font-bold mb-6">Edit T-Shirt</h1>
+    <h1 class="text-3xl font-bold mb-6">Edit Product: {{$tshirt->name}}</h1>
     <form action="{{ route('tshirts.update', $tshirt->id) }}" method="POST">
         @csrf
         @method('PUT')

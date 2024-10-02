@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Admin Dashboard') }}
+            {{ __('Dashboard') }}
         </h2>
     </x-slot>
 
@@ -33,13 +33,13 @@
 
                     <!-- Most Stocked T-Shirt Card -->
                     <div class="bg-purple-100 p-4 rounded-lg shadow-md">
-                        <h4 class="font-bold text-xl">Most Stocked T-Shirt</h4>
+                        <h4 class="font-bold text-xl">Most Stocked Product</h4>
                         <p class="text-lg mt-2">{{ $mostStockedTshirt->name ?? 'N/A' }}</p>
                     </div>
 
                     <!-- Least Stocked T-Shirt Card -->
                     <div class="bg-red-100 p-4 rounded-lg shadow-md">
-                        <h4 class="font-bold text-xl">Least Stocked T-Shirt</h4>
+                        <h4 class="font-bold text-xl">Least Stocked Product</h4>
                         <p class="text-lg mt-2">{{ $leastStockedTshirt->name ?? 'N/A' }}</p>
                     </div>
                 </div>
@@ -49,7 +49,7 @@
         <!-- Stock Distribution Chart -->
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
-                <h3 class="font-semibold text-lg mb-4">Stock Distribution</h3>
+                <h3 class="font-semibold text-lg mb-4">Inventory</h3>
                 <canvas id="stockChart" width="400" height="200"></canvas>
             </div>
         </div>
