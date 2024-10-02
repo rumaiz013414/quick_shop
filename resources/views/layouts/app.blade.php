@@ -27,7 +27,10 @@
                 <ul class="space-y-2">
                     <!-- Dashboard -->
                     <li>
-                        <a href="{{ route('dashboard') }}" class="block px-4 py-2 hover:bg-gray-700 rounded {{ request()->routeIs('dashboard') ? 'bg-gray-700' : '' }}">
+                        <a href="{{ route('dashboard') }}" class="flex items-center px-4 py-2 hover:bg-gray-700 rounded {{ request()->routeIs('dashboard') ? 'bg-gray-700' : '' }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7m-9 13V10m-5 5h6m6 0h6" />
+                            </svg>
                             Dashboard
                         </a>
                     </li>
@@ -35,13 +38,19 @@
                     <!-- Team Management (conditional rendering) -->
                     @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
                         <li>
-                            <a href="{{ route('teams.show', Auth::user()->currentTeam->id) }}" class="block px-4 py-2 hover:bg-gray-700 rounded">
+                            <a href="{{ route('teams.show', Auth::user()->currentTeam->id) }}" class="flex items-center px-4 py-2 hover:bg-gray-700 rounded">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a5 5 0 00-5-5h-4a5 5 0 00-5 5v2h5m0-16a3 3 0 110 6 3 3 0 010-6z" />
+                                </svg>
                                 Team Settings
                             </a>
                         </li>
                         @can('create', Laravel\Jetstream\Jetstream::newTeamModel())
                             <li>
-                                <a href="{{ route('teams.create') }}" class="block px-4 py-2 hover:bg-gray-700 rounded">
+                                <a href="{{ route('teams.create') }}" class="flex items-center px-4 py-2 hover:bg-gray-700 rounded">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7h18M3 12h18m-9 5h9" />
+                                    </svg>
                                     Create New Team
                                 </a>
                             </li>
@@ -50,20 +59,30 @@
 
                     <!-- Manage T-Shirts -->
                     <li>
-                        <a href="{{ route('tshirts.index') }}" class="block px-4 py-2 hover:bg-gray-700 rounded {{ request()->routeIs('tshirts.*') ? 'bg-gray-700' : '' }}">
+                        <a href="{{ route('tshirts.index') }}" class="flex items-center px-4 py-2 hover:bg-gray-700 rounded {{ request()->routeIs('tshirts.*') ? 'bg-gray-700' : '' }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7h18M3 12h18m-9 5h9" />
+                            </svg>
                             Manage Products
                         </a>
                     </li>
 
+                    <!-- Manage Users -->
                     <li>
-                        <a href="{{ route('users.index') }}" class="block px-4 py-2 hover:bg-gray-700 rounded {{ request()->routeIs('users.*') ? 'bg-gray-700' : '' }}">
+                        <a href="{{ route('users.index') }}" class="flex items-center px-4 py-2 hover:bg-gray-700 rounded {{ request()->routeIs('users.*') ? 'bg-gray-700' : '' }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
                             Manage Users
                         </a>
                     </li>
                         
                     <!-- Profile and Settings -->
                     <li>
-                        <a href="{{ route('profile.show') }}" class="block px-4 py-2 hover:bg-gray-700 rounded">
+                        <a href="{{ route('profile.show') }}" class="flex items-center px-4 py-2 hover:bg-gray-700 rounded">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A8.012 8.012 0 0112 21c1.657 0 3.183-.537 4.438-1.438M8 9a4 4 0 118 0 4 4 0 01-8 0z" />
+                            </svg>
                             Profile
                         </a>
                     </li>
@@ -71,7 +90,10 @@
                     <!-- API Tokens (conditional rendering) -->
                     @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                         <li>
-                            <a href="{{ route('api-tokens.index') }}" class="block px-4 py-2 hover:bg-gray-700 rounded">
+                            <a href="{{ route('api-tokens.index') }}" class="flex items-center px-4 py-2 hover:bg-gray-700 rounded">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-3-3v6m-6 6a9 9 0 100-18 9 9 0 000 18z" />
+                                </svg>
                                 API Tokens
                             </a>
                         </li>
@@ -81,7 +103,10 @@
                     <li>
                         <form method="POST" action="{{ route('logout') }}" class="block w-full">
                             @csrf
-                            <button type="submit" class="block w-full text-left px-4 py-2 hover:bg-gray-700 rounded">
+                            <button type="submit" class="flex items-center px-4 py-2 hover:bg-gray-700 rounded w-full text-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H4a3 3 0 01-3-3V5a3 3 0 013-3h6a3 3 0 013 3v1" />
+                                </svg>
                                 Log Out
                             </button>
                         </form>
@@ -108,7 +133,6 @@
                 </div>
             </main>
         </div>
-        
     </div>
 
     <!-- Include any additional scripts here -->
