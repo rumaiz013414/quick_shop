@@ -33,7 +33,7 @@ class PurchaseController extends Controller
                 if ($tshirt->stock < $cartItem->quantity) {
                     // If the requested quantity exceeds available stock, throw an error
                     return response()->json([
-                        'message' => "Not enough stock for T-shirt: {$tshirt->name}"
+                        'message' => "Not enough stocks : {$tshirt->name}"
                     ], 400);
                 }
 
@@ -54,4 +54,30 @@ class PurchaseController extends Controller
             return response()->json(['message' => 'Purchase failed. Please try again.'], 500);
         }
     }
+    public function showDashboard()
+{
+    $user = auth()->user();
+
+    // Fetch the user's purchases
+    $purchases = DB::table('purchases')
+        ->where('user_id', $user->id)
+        ->get();
+
+    // Fetch additional analytics data (already present)
+    $totalTshirts = Tshirt::count();
+    $totalStock = Tshirt::sum('stock');
+    $averagePrice = Tshirt::avg('price');
+    $mostStockedTshirt = Tshirt::orderBy('stock', 'desc')->first();
+    $leastStockedTshirt = Tshirt::orderBy('stock', 'asc')->first();
+
+    return view('dashboard', [
+        'purchases' => $purchases,
+        'totalTshirts' => $totalTshirts,
+        'totalStock' => $totalStock,
+        'averagePrice' => $averagePrice,
+        'mostStockedTshirt' => $mostStockedTshirt,
+        'leastStockedTshirt' => $leastStockedTshirt
+    ]);
+}
+
 }
