@@ -12,5 +12,10 @@ class Tshirt extends Model
     protected $fillable = [
         'name', 'color', 'size', 'price', 'stock'
     ];
+
+    public function cartItems()
+    {
+        return $this->hasMany(CartItem::class);
+    }
 }
 

@@ -13,10 +13,11 @@ class TshirtController extends Controller
         $tshirts = Tshirt::all();
         return response()->json($tshirts);
     }
+    
     public function webindex()
     {
         $tshirts = Tshirt::all();
-        return view('tshirts.index', compact('tshirts'));  // Return the view instead of JSON
+        return view('tshirts.index', compact('tshirts'));  
     }
 
     // Get a single t-shirt by ID
@@ -24,7 +25,37 @@ class TshirtController extends Controller
     {
         return response()->json($tshirt);
     }
-
+     // Add T-shirt to Cart with quantity
+     public function addToCart(Request $request, Tshirt $tshirt)
+     {
+         $request->validate([
+             'quantity' => 'required|integer|min:1',
+         ]);
+ 
+         $cart = Cart::firstOrCreate(['user_id' => auth()->id()]);
+ 
+         $cartItem = CartItem::where('cart_id', $cart->id)
+                             ->where('tshirt_id', $tshirt->id)
+                             ->first();
+ 
+         if ($cartItem) {
+             $cartItem->update(['quantity' => $cartItem->quantity + $request->quantity]);
+         } else {
+             CartItem::create([
+                 'cart_id' => $cart->id,
+                 'tshirt_id' => $tshirt->id,
+                 'quantity' => $request->quantity,
+             ]);
+         }
+ 
+         return response()->json(['message' => 'T-shirt added to cart successfully.']);
+     }
+     // Fetch all items in the user's cart
+    public function viewCart()
+    {
+        $cart = Cart::where('user_id', auth()->id())->with('items.tshirt')->first();
+        return response()->json($cart ? $cart->items : []);
+    }
     // Create a new t-shirt
     public function store(Request $request)
     {
@@ -54,7 +85,7 @@ class TshirtController extends Controller
         $tshirt->update($request->all());
         return redirect()->route('tshirts.index')->with('success', 'T-shirt updated successfully.');
     }
-
+    
     public function create()
     {
         return view('tshirts.create');
