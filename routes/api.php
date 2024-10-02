@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TshirtController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 
 // User Authentication Routes
@@ -25,6 +26,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('cart/item/{cartItem}', [CartController::class, 'updateCartItem']);
     Route::delete('cart/clear', [CartController::class, 'clearCart']);
 });
+
+Route::middleware('auth:sanctum')->post('/cart/purchase', [PurchaseController::class, 'purchaseCart']); // Purchase cart
+
 // Profile Routes (requires authentication)
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/profile', [ProfileController::class, 'show']); // Get user profile
