@@ -18,7 +18,13 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/tshirts', [TshirtController::class, 'index']); // Get all t-shirts
     Route::get('/tshirts/{tshirt}', [TshirtController::class, 'show']); // Get a single t-shirt
 });
-
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('cart/add/{tshirt}', [CartController::class, 'addToCart']);
+    Route::get('cart', [CartController::class, 'viewCart']);
+    Route::delete('cart/item/{cartItem}', [CartController::class, 'removeFromCart']);
+    Route::put('cart/item/{cartItem}', [CartController::class, 'updateCartItem']);
+    Route::delete('cart/clear', [CartController::class, 'clearCart']);
+});
 // Profile Routes (requires authentication)
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/profile', [ProfileController::class, 'show']); // Get user profile
