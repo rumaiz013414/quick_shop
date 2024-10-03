@@ -12,7 +12,7 @@ class AdminDashboardController extends Controller
     // Fetch t-shirt analytics data
     $totalTshirts = Tshirt::count();
     $totalStock = Tshirt::sum('stock');
-    $averagePrice = Tshirt::average('price');
+    $totalPrice = Tshirt::sum('price');
     $mostStockedTshirt = Tshirt::orderBy('stock', 'desc')->first();
     $leastStockedTshirt = Tshirt::orderBy('stock', 'asc')->first();
 
@@ -25,7 +25,7 @@ class AdminDashboardController extends Controller
     return view('dashboard', compact(
         'totalTshirts', 
         'totalStock', 
-        'averagePrice', 
+        'totalPrice', 
         'mostStockedTshirt', 
         'leastStockedTshirt',
         'tshirtNames',

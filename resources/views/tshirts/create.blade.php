@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container mx-auto p-6">
-    <h1 class="text-3xl font-bold mb-4">Add New T-Shirt</h1>
+    <h1 class="text-3xl font-bold mb-4">Add New Product</h1>
     <form action="{{ route('tshirts.store') }}" method="POST" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         @csrf
         <div class="mb-4">

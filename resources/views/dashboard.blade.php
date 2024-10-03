@@ -27,8 +27,8 @@
 
                     <!-- Average Price Card -->
                     <div class="bg-yellow-100 p-4 rounded-lg shadow-md">
-                        <h4 class="font-bold text-xl">Average Price</h4>
-                        <p class="text-2xl mt-2">${{ number_format($averagePrice ?? 0, 2) }}</p>
+                        <h4 class="font-bold text-xl">Sum Of Price</h4>
+                        <p class="text-2xl mt-2">${{ number_format($totalPrice ?? 0, 2) }}</p>
                     </div>
 
                     <!-- Most Stocked T-Shirt Card -->
