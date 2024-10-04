@@ -65,6 +65,8 @@ class TshirtController extends Controller
             'size' => 'required|string|max:255',
             'price' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
+            'description' => 'required|string|max:255',
+            'image' => 'required|string|max:5000',
         ]);
 
         $tshirt = Tshirt::create($request->all());
@@ -75,11 +77,13 @@ class TshirtController extends Controller
     public function update(Request $request, Tshirt $tshirt)
     {
         $request->validate([
-            'name' => 'sometimes|required|string|max:255',
-            'color' => 'sometimes|required|string|max:255',
-            'size' => 'sometimes|required|string|max:255',
-            'price' => 'sometimes|required|numeric|min:0',
-            'stock' => 'sometimes|required|integer|min:0',
+            'name' => 'required|string|max:255',
+            'color' => 'required|string|max:255',
+            'size' => 'required|string|max:255',
+            'price' => 'required|numeric|min:0',
+            'stock' => 'required|integer|min:0',
+            'description' => 'required|string|max:255',
+            'image' => 'required|string|max:5000',
         ]);
 
         $tshirt->update($request->all());

@@ -11,11 +11,11 @@ use Illuminate\Support\Facades\DB;
 class PurchaseController extends Controller
 {
     // Handle purchasing the items in the cart
-    public function purchaseCart()
+    public function purchaseCart(Request $request)
     {
-        $user = auth()->user();
+        $user = auth()->user(); // Ensure user is authenticated
 
-        // Fetch the user's cart
+        // Fetch the user's cart with the associated t-shirts
         $cart = Cart::where('user_id', $user->id)->with('items.tshirt')->first();
 
         if (!$cart || $cart->items->isEmpty()) {
@@ -31,9 +31,9 @@ class PurchaseController extends Controller
                 $tshirt = $cartItem->tshirt;
 
                 if ($tshirt->stock < $cartItem->quantity) {
-                    // If the requested quantity exceeds available stock, throw an error
+                    // If the requested quantity exceeds available stock, return an error
                     return response()->json([
-                        'message' => "Not enough stocks : {$tshirt->name}"
+                        'message' => "Not enough stock for {$tshirt->name}"
                     ], 400);
                 }
 
@@ -42,42 +42,16 @@ class PurchaseController extends Controller
             }
 
             // Clear the cart after purchase
-            $cart->items()->delete();
+            $cart->items()->delete(); // Delete all cart items
 
             // Commit the transaction
             DB::commit();
 
             return response()->json(['message' => 'Purchase completed successfully.']);
         } catch (\Exception $e) {
-            // Rollback in case of any error
+            // Rollback the transaction in case of any error
             DB::rollBack();
             return response()->json(['message' => 'Purchase failed. Please try again.'], 500);
         }
     }
-    public function showDashboard()
-{
-    $user = auth()->user();
-
-    // Fetch the user's purchases
-    $purchases = DB::table('purchases')
-        ->where('user_id', $user->id)
-        ->get();
-
-    // Fetch additional analytics data (already present)
-    $totalTshirts = Tshirt::count();
-    $totalStock = Tshirt::sum('stock');
-    $averagePrice = Tshirt::avg('price');
-    $mostStockedTshirt = Tshirt::orderBy('stock', 'desc')->first();
-    $leastStockedTshirt = Tshirt::orderBy('stock', 'asc')->first();
-
-    return view('dashboard', [
-        'purchases' => $purchases,
-        'totalTshirts' => $totalTshirts,
-        'totalStock' => $totalStock,
-        'averagePrice' => $averagePrice,
-        'mostStockedTshirt' => $mostStockedTshirt,
-        'leastStockedTshirt' => $leastStockedTshirt
-    ]);
-}
-
 }

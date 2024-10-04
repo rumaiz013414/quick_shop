@@ -10,7 +10,7 @@ class Tshirt extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'color', 'size', 'price', 'stock'
+        'name', 'color', 'size', 'price', 'stock', 'description' ,'image'
     ];
 
     public function cartItems()

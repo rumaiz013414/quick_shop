@@ -21,6 +21,8 @@
                     <th class="py-2 px-4 border-b border-gray-200 text-center">Size</th>
                     <th class="py-2 px-4 border-b border-gray-200 text-center">Price</th>
                     <th class="py-2 px-4 border-b border-gray-200 text-center">Quantity</th>
+                    <th class="py-2 px-4 border-b border-gray-200 text-center">Description</th>
+                    <th class="py-2 px-4 border-b border-gray-200 text-center">Image</th>
                     <th class="py-2 px-4 border-b border-gray-200 text-center">Actions</th>
                 </tr>
             </thead>
@@ -33,6 +35,9 @@
                         <td class="py-2 px-4 border-b border-gray-200 text-center">{{ $tshirt->size }}</td>
                         <td class="py-2 px-4 border-b border-gray-200 text-center">${{ $tshirt->price }}</td>
                         <td class="py-2 px-4 border-b border-gray-200 text-center">{{ $tshirt->stock }}</td>
+                        <td class="py-2 px-4 border-b border-gray-200 text-center">{{ $tshirt->description }}</td>
+                        <td class="py-2 px-4 border-b border-gray-200 text-center">{{ $tshirt->image }}</td>
+    
                         <td class="py-2 px-4 border-b border-gray-200 text-center">
                             <a href="{{ route('tshirts.edit', $tshirt->id) }}" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-2 rounded">Edit</a>
                             <form action="{{ route('tshirts.destroy', $tshirt->id) }}" method="POST" class="inline">

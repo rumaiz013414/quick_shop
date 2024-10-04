@@ -11,7 +11,7 @@ class CartController extends Controller
 {
     // Add a T-shirt to the cart
     public function addToCart(Request $request, Tshirt $tshirt)
-{
+    {
     $validated = $request->validate([
         'quantity' => 'required|integer|min:1',
     ]);
@@ -41,7 +41,7 @@ class CartController extends Controller
     }
 
     return response()->json(['message' => 'T-shirt added to cart successfully.']);
-}
+    }
 
 
     // View all items in the user's cart

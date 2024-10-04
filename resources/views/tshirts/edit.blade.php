@@ -31,6 +31,14 @@
             <label for="stock" class="block text-gray-700 text-sm font-bold mb-2">Stock</label>
             <input type="number" name="stock" class="w-full p-2 border border-gray-300 rounded-lg" value="{{ $tshirt->stock }}" required>
         </div>
+        <div class="mb-4">
+            <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Description</label>
+            <textarea name="description" class="w-full p-2 border border-gray-300 rounded-lg" required>{{ $tshirt->description }}</textarea>
+        </div>
+        <div class="mb-4">
+            <label for="image" class="block text-gray-700 text-sm font-bold mb-2">Image</label>
+            <input type="text" name="image" class="w-full p-2 border border-gray-300 rounded-lg" value="{{ $tshirt->image }}" required>
+        </div>
 
         <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300">Update T-Shirt</button>
     </form>
