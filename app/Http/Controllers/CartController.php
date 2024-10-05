@@ -40,7 +40,7 @@ class CartController extends Controller
         ]);
     }
 
-    return response()->json(['message' => 'T-shirt added to cart successfully.']);
+    return response()->json(['message' => 'Product added to cart successfully.']);
     }
 
 

@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TshirtSearchController;
+use App\Http\controllers\PurchaseController;
 
 
 Route::get('/', function () {
