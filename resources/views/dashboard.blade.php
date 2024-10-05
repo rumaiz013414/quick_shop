@@ -63,7 +63,7 @@
         <!-- Sales Distribution Chart -->
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
-                <h3 class="font-semibold text-lg mb-4">Sales</h3>
+                <h3 class="font-semibold text-lg mb-4">Unit Sales</h3>
                 <canvas id="salesChart" width="400" height="200"></canvas>
             </div>
         </div>
@@ -71,7 +71,7 @@
         <!-- Monthly Sales Chart -->
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
-                <h3 class="font-semibold text-lg mb-4">Monthly Sales (Last 12 Months)</h3>
+                <h3 class="font-semibold text-lg mb-4">Monthly Sales By year</h3>
                 <canvas id="monthlySalesChart" width="400" height="200"></canvas>
             </div>
         </div>
@@ -79,7 +79,7 @@
         <!-- Yearly Sales Chart -->
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
-                <h3 class="font-semibold text-lg mb-4">Yearly Sales (Last 5 Years)</h3>
+                <h3 class="font-semibold text-lg mb-4">Yearly Sales</h3>
                 <canvas id="yearlySalesChart" width="400" height="200"></canvas>
             </div>
         </div>
