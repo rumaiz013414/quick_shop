@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Tshirt;
 use App\Models\Sale;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+
 
 class AdminDashboardController extends Controller
 {
@@ -28,6 +30,32 @@ class AdminDashboardController extends Controller
         $tshirtNames = $tshirts->pluck('name');
         $stockQuantities = $tshirts->pluck('stock');
 
+        // Sales by month (last 12 months)
+        $monthlySales = Sale::selectRaw('YEAR(created_at) as year, MONTH(created_at) as month, SUM(total_price) as total')
+            ->groupBy('year', 'month')
+            ->orderBy('year', 'asc')
+            ->orderBy('month', 'asc')
+            ->get();
+
+        // Sales by year (last 5 years)
+        $yearlySales = Sale::selectRaw('YEAR(created_at) as year, SUM(total_price) as total')
+            ->groupBy('year')
+            ->orderBy('year', 'asc')
+            ->get();
+
+        // Prepare data for the line charts
+        $monthlyLabels = [];
+        $monthlyValues = [];
+        foreach ($monthlySales as $sale) {
+            $monthName = Carbon::create($sale->year, $sale->month)->format('F Y');
+            $monthlyLabels[] = $monthName;
+            $monthlyValues[] = $sale->total;
+        }
+
+        $yearlyLabels = $yearlySales->pluck('year');
+        $yearlyValues = $yearlySales->pluck('total');
+
+
         // Pass this data to the dashboard view
         return view('dashboard', compact(
             'totalTshirts', 
@@ -40,7 +68,11 @@ class AdminDashboardController extends Controller
             'tshirtSalesNames',
             'salesQuantities',
             'tshirtNames',
-            'stockQuantities'
+            'stockQuantities',
+            'monthlyLabels', 
+            'monthlyValues', 
+            'yearlyLabels', 
+            'yearlyValues'
         ));
     }
 }

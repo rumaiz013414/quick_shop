@@ -67,6 +67,22 @@
                 <canvas id="salesChart" width="400" height="200"></canvas>
             </div>
         </div>
+
+        <!-- Monthly Sales Chart -->
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-8">
+            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
+                <h3 class="font-semibold text-lg mb-4">Monthly Sales (Last 12 Months)</h3>
+                <canvas id="monthlySalesChart" width="400" height="200"></canvas>
+            </div>
+        </div>
+
+        <!-- Yearly Sales Chart -->
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-8">
+            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
+                <h3 class="font-semibold text-lg mb-4">Yearly Sales (Last 5 Years)</h3>
+                <canvas id="yearlySalesChart" width="400" height="200"></canvas>
+            </div>
+        </div>
     </div>
 
     <!-- Chart.js Script -->
@@ -107,6 +123,52 @@
                     backgroundColor: 'rgba(75, 192, 192, 0.2)',
                     borderColor: 'rgba(75, 192, 192, 1)',
                     borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Monthly Sales Line Chart
+        var ctxMonthly = document.getElementById('monthlySalesChart').getContext('2d');
+        var monthlySalesChart = new Chart(ctxMonthly, {
+            type: 'line',
+            data: {
+                labels: @json($monthlyLabels), // Month names
+                datasets: [{
+                    label: 'Total Sales ($)',
+                    data: @json($monthlyValues), // Monthly sales values
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    fill: true,
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Yearly Sales Line Chart
+        var ctxYearly = document.getElementById('yearlySalesChart').getContext('2d');
+        var yearlySalesChart = new Chart(ctxYearly, {
+            type: 'line',
+            data: {
+                labels: @json($yearlyLabels), // Years
+                datasets: [{
+                    label: 'Total Sales ($)',
+                    data: @json($yearlyValues), // Yearly sales values
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    fill: true,
                 }]
             },
             options: {
