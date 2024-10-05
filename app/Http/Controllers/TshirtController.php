@@ -48,7 +48,7 @@ class TshirtController extends Controller
              ]);
          }
  
-         return response()->json(['message' => 'T-shirt added to cart successfully.']);
+         return response()->json(['message' => 'Product added to cart successfully.']);
      }
      // Fetch all items in the user's cart
     public function viewCart()
@@ -70,7 +70,7 @@ class TshirtController extends Controller
         ]);
 
         $tshirt = Tshirt::create($request->all());
-        return redirect()->route('tshirts.index')->with('success', 'T-shirt added successfully.');
+        return redirect()->route('tshirts.index')->with('success', 'Product added successfully.');
     }
 
     // Update a t-shirt
@@ -87,7 +87,7 @@ class TshirtController extends Controller
         ]);
 
         $tshirt->update($request->all());
-        return redirect()->route('tshirts.index')->with('success', 'T-shirt updated successfully.');
+        return redirect()->route('tshirts.index')->with('success', 'Product updated successfully.');
     }
     
     public function create()
@@ -101,7 +101,7 @@ class TshirtController extends Controller
     public function destroy(Tshirt $tshirt)
     {
         $tshirt->delete();
-        return redirect()->route('tshirts.index')->with('success', 'T-shirt deleted successfully.');
+        return redirect()->route('tshirts.index')->with('success', 'Product deleted successfully.');
     }
 }
 
